@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { UncontrolledCollapse, Button, CardBody, Card } from "reactstrap";
 
 class Searchform extends Component {
   constructor(props) {
@@ -31,29 +32,45 @@ class Searchform extends Component {
     const listedBooks = this.state.books.map((book) => (
       <div key={book.id}>
         <h3>{book.volumeInfo.title}</h3>
-        <img src={book.volumeInfo.imageLinks.smallThumbnail} alt="Smiley face"/>
-        <h3>Author: {book.volumeInfo.authors}</h3>
-        <h4>Publisher: {book.volumeInfo.publisher}</h4>
-        <p>{book.volumeInfo.description}</p>
+        <img
+          src={book.volumeInfo.imageLinks.smallThumbnail}
+          alt="Smiley face"
+        />
+        <h4>Author: {book.volumeInfo.authors}</h4>
+        <h5>Publisher: {book.volumeInfo.publisher}</h5>
+        <div>
+          <a className="btn btn-sm btn-outline-secondary" id="toggler">
+            click to view book description
+          </a>
+          <UncontrolledCollapse toggler="#toggler">
+            <Card>
+              <CardBody>{book.volumeInfo.description}</CardBody>
+            </Card>
+          </UncontrolledCollapse>
+        </div>
         <p>{book.volumeInfo.publishedDate}</p>
       </div>
     ));
 
     return (
       <div>
-        <h1>Search for books</h1>
-        <form onSubmit={this.onSubmit}>
+        <h1 className="mt-3">Search for books</h1>
+        <form class="form-inline mb-3" onSubmit={this.onSubmit}>
           <input
+            className="col-10 form-control"
             type="text"
             name="search"
             id="search"
             onChange={this.onChange}
             value={this.setState.searchText}
+            required
           />
-          <button type="submit">Search</button>
+          <button className="col-2 btn btn-primary" type="submit">
+            Search
+          </button>
         </form>
         <div>
-          <h1> Books List</h1>
+          <h3> Books List</h3>
           <hr />
           {listedBooks}
         </div>
