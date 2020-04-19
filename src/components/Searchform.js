@@ -30,7 +30,7 @@ class Searchform extends Component {
 
   render() {
     const listedBooks = this.state.books.map((book) => (
-      <div key={book.id}>
+      <div className="book-card" key={book.id}>
         <h3>{book.volumeInfo.title}</h3>
         <img
           src={book.volumeInfo.imageLinks.smallThumbnail}
@@ -38,7 +38,8 @@ class Searchform extends Component {
         />
         <h4>Author: {book.volumeInfo.authors}</h4>
         <h5>Publisher: {book.volumeInfo.publisher}</h5>
-        <div>
+        <p>{book.volumeInfo.publishedDate}</p>
+        <div className="pb-3">
           <a className="btn btn-sm btn-outline-secondary" id="toggler">
             click to view book description
           </a>
@@ -48,7 +49,6 @@ class Searchform extends Component {
             </Card>
           </UncontrolledCollapse>
         </div>
-        <p>{book.volumeInfo.publishedDate}</p>
       </div>
     ));
 
@@ -72,7 +72,10 @@ class Searchform extends Component {
         <div>
           <h3> Books List</h3>
           <hr />
-          {listedBooks}
+
+          <div className="row">
+            {listedBooks}
+          </div>
         </div>
       </div>
     );

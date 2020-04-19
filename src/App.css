@@ -5,6 +5,11 @@
   font-family: roboto;
 }
 
+.book-card{
+  margin: auto;
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
